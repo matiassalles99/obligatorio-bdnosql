@@ -1,22 +1,26 @@
-<table>
-  <thead>
-    <tr>
-      <th>Guid</th>
-      <th>Pressure</th>
-      <th>Velocity</th>
-      <th>Wind Velocity</th>
-      <th>Captured at</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @telemetries.each do |telemetry| %>
+<div class="mt-10 flex flex-col justify-center items-center">
+  <span class="mb-5"><b>Current Telemetries</b></span>
+  <table class="w-1/2 text-md text-center bg-gray-200 border-2 border-black">
+    <thead>
       <tr>
-        <td><%= telemetry.guid %></td>
-        <td><%= telemetry.pressure %></td>
-        <td><%= telemetry.velocity %></td>
-        <td><%= telemetry.wind_velocity %></td>
-        <td><%= telemetry.captured_at %></td>
+        <th class="border-2 border-black p-1">Guid</th>
+        <th class="border-2 border-black p-1">Velocity (km/h)</th>
+        <th class="border-2 border-black p-1">Wind Velocity (km/h)</th>
+        <th class="border-2 border-black p-1">Pressure (psi)</th>
+        <th class="border-2 border-black p-1">Captured at</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @telemetries.each do |telemetry| %>
+        <tr>
+          <td class="border-2 border-black"><%= telemetry.guid %></td>
+          <td class="border-2 border-black"><%= number_with_precision(telemetry.velocity) %></td>
+          <td class="border-2 border-black"><%= number_with_precision(telemetry.wind_velocity) %></td>
+          <td class="border-2 border-black"><%= number_with_precision(telemetry.pressure) %></td>
+          <td class="border-2 border-black"><%= telemetry.captured_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to('Add new Lecture', new_vehicle_telemetry_path, class: 'mt-10 bg-red-600 p-2 rounded text-white') %>
+</div>

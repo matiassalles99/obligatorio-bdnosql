@@ -1,0 +1,19 @@
+<div class='flex flex-col justify-center items-center mt-10'>
+  <span class="mb-10"><b>Fill the required data</b></span>
+  <%= form_with model: @vehicle_telemetry, url: vehicle_telemetries_path, method: :post, class: 'w-1/2 flex flex-col' do |f| %>
+    <%= f.label :velocity, "Velocity (km/h):" %>
+    <%= f.number_field :velocity, class: 'mb-5 w-full' %>
+
+    <%= f.label :wind_velocity, "Wind Velocity (km/h):" %>
+    <%= f.number_field :wind_velocity, class: 'mb-5 w-full' %>
+
+    <%= f.label :pressure, "Pressure (psi):" %>
+    <%= f.number_field :pressure, class: 'mb-5 w-full' %>
+
+    <% if @error.present? %>
+      <span class="mt-5 bg-gray-200 text-center"><%= @error.join(', ') %></span>
+    <% end %>
+
+    <%= f.submit("Save", class: 'mt-10 bg-red-600 p-2 rounded text-white hover:bg-red-500 hover:cursor-pointer') %>
+  <% end %>
+</div>

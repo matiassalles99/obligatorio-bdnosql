@@ -1,17 +1,23 @@
 class VehicleTelemetry
-  attr_accessor :guid, :pressure, :velocity, :wind_velocity, :captured_at
+  include ActiveModel::Model
+  include Cassandra::Model
 
-  alias_attribute :capturedat, :captured_at
-  alias_attribute :windvelocity, :wind_velocity
+  attributes :guid, :pressure, :velocity, :wind_velocity, :captured_at
+  table_name 'vehicleTelemetry'
+
+  validates :pressure, :velocity, :wind_velocity, presence: true
 
   class << self
-    def from_hash(hash)
-      record = self.new
-      hash.each do |key, value|
-        record.send("#{key}=", value)
-      end
-
-      record
+    def fillable
+      %i[pressure velocity wind_velocity]
     end
+  end
+
+  def prepare_for_cassandra_insert
+    self.guid = SecureRandom.uuid[0,5]
+    self.captured_at = Time.zone.now
+    self.pressure = pressure.to_f
+    self.velocity = velocity.to_f
+    self.wind_velocity = wind_velocity.to_f
   end
 end
