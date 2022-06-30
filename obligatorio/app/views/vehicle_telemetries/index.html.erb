@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>Guid</th>
+      <th>Pressure</th>
+      <th>Velocity</th>
+      <th>Wind Velocity</th>
+      <th>Captured at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @telemetries.each do |telemetry| %>
+      <tr>
+        <td><%= telemetry.guid %></td>
+        <td><%= telemetry.pressure %></td>
+        <td><%= telemetry.velocity %></td>
+        <td><%= telemetry.wind_velocity %></td>
+        <td><%= telemetry.captured_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
