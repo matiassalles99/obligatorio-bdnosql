@@ -1,0 +1,22 @@
+<div class="mt-10 flex flex-col justify-center items-center">
+  <span class="mb-5"><b>Current Products</b></span>
+  <table class="w-1/2 text-md text-center bg-gray-200 border-2 border-black">
+    <thead>
+    <tr>
+      <th class="border-2 border-black p-1">Name</th>
+      <th class="border-2 border-black p-1">Description</th>
+      <th class="border-2 border-black p-1">Price (USD)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td class="border-2 border-black"><%= product.name %></td>
+        <td class="border-2 border-black"><%= product.description %></td>
+        <td class="border-2 border-black"><%= number_to_currency(product.price) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= link_to('Add new Product', new_product_path, class: 'mt-10 bg-red-600 p-2 rounded text-white') %>
+</div>
