@@ -1,0 +1,19 @@
+<div class='flex flex-col justify-center items-center mt-10'>
+  <span class="mb-10"><b>Fill the required data</b></span>
+  <%= form_with model: @product, url: products_path, method: :post, class: 'w-1/2 flex flex-col' do |f| %>
+    <%= f.label :name, "Name:" %>
+    <%= f.text_field :name, class: 'mb-5 w-full' %>
+
+    <%= f.label :description, "Description:" %>
+    <%= f.text_field :description, class: 'mb-5 w-full' %>
+
+    <%= f.label :price, "Precio (USD):" %>
+    <%= f.number_field :price, class: 'mb-5 w-full' %>
+
+    <% if @error.present? %>
+      <span class="mt-5 bg-gray-200 text-center"><%= @error.join(', ') %></span>
+    <% end %>
+
+    <%= f.submit("Save", class: 'mt-10 bg-red-600 p-2 rounded text-white hover:bg-red-500 hover:cursor-pointer') %>
+  <% end %>
+</div>
