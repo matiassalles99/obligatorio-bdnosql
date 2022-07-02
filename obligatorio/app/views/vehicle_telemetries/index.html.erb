@@ -1,9 +1,9 @@
 <div class="mt-10 flex flex-col justify-center items-center">
-  <span class="mb-5"><b>Current Telemetries</b></span>
-  <table class="w-1/2 text-md text-center bg-gray-200 border-2 border-black">
+  <span class="mb-5"><b>Current Telemetries (ordered by created at on city)</b></span>
+  <table class="w-9/12 text-md text-center bg-gray-200 border-2 border-black">
     <thead>
       <tr>
-        <th class="border-2 border-black p-1">Guid</th>
+        <th class="border-2 border-black p-1">City</th>
         <th class="border-2 border-black p-1">Velocity (km/h)</th>
         <th class="border-2 border-black p-1">Wind Velocity (km/h)</th>
         <th class="border-2 border-black p-1">Pressure (psi)</th>
@@ -13,7 +13,7 @@
     <tbody>
       <% @telemetries.each do |telemetry| %>
         <tr>
-          <td class="border-2 border-black"><%= telemetry.guid %></td>
+          <td class="border-2 border-black"><%= telemetry.city %></td>
           <td class="border-2 border-black"><%= number_with_precision(telemetry.velocity) %></td>
           <td class="border-2 border-black"><%= number_with_precision(telemetry.wind_velocity) %></td>
           <td class="border-2 border-black"><%= number_with_precision(telemetry.pressure) %></td>

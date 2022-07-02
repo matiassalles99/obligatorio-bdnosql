@@ -1,6 +1,9 @@
 <div class='flex flex-col justify-center items-center mt-10'>
   <span class="mb-10"><b>Fill the required data</b></span>
   <%= form_with model: @vehicle_telemetry, url: vehicle_telemetries_path, method: :post, class: 'w-1/2 flex flex-col' do |f| %>
+    <%= f.label :city, "City:" %>
+    <%= f.text_field :city, class: 'mb-5 w-full' %>
+
     <%= f.label :velocity, "Velocity (km/h):" %>
     <%= f.number_field :velocity, class: 'mb-5 w-full' %>
 
